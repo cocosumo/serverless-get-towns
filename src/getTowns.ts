@@ -5,15 +5,16 @@ export default async function getTowns({
   city
 }:{
   city: string
-}): Promise<Object[]> {
+}): Promise<Record<string, string>[]> {
 
   if(city === undefined) {
    throw new Error('getTowns: city is required');
   }
 
   const query = [
-    `city="${city}"`
-  ]
+    `city="${city}"`,
+    `town != "以下に掲載がない場合"`
+  ].join(' and ');
   const fields = [
     //'city',
     //'cityReading',
@@ -32,6 +33,8 @@ export default async function getTowns({
 
   console.log('Requesting', url);
 
+  let result: Record<string, string>[] = [];
+
   try {
     const {data} = await axios({
       method: 'GET',
@@ -40,17 +43,27 @@ export default async function getTowns({
         'X-Cybozu-API-Token': process.env.API_TOKEN || "",
       }
     })
-    return data.records.map((record: any) => {
+
+    result = data
+      .records
+      .map((record: any) => {
       return {
         postal: record.postalCode.value,
         town: record.town.value,
         town_kana: record.townReading.value,
       }
     });
+
   } catch (error) {
     console.error('Error getting towns', error);
-    return []
   }
 
+  result.push({
+    postal: '0000000',
+    town: 'その他',
+    town_kana: 'その他'
+  })
   
+
+  return result;
 }
