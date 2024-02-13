@@ -5,12 +5,12 @@ export const handler = async (event: APIGatewayEvent, context: Context): Promise
   console.log(`Event: ${JSON.stringify(event, null, 2)}`);
   console.log(`Context: ${JSON.stringify(context, null, 2)}`);
 
-  await getTowns({city: '豊田市'});
+  const result = await getTowns({city: '豊田市'});
 
   return {
       statusCode: 200,
       body: JSON.stringify({
-          message: 'hello worlds!',
+          data: result,
       }),
    };
 };
