@@ -9,6 +9,8 @@ export default async function getTowns({
    throw new Error('city is required');
   }
 
+
+  console.log('city', city);
  /*  return await kintoneClient.record.getAllRecords({
     app: 219,
     condition: `city = "${city}"`,
