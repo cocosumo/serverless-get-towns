@@ -1,6 +1,6 @@
 
 import axios from "axios";
-
+import qs from "querystring";
 export default async function getTowns({
   city
 }:{
@@ -14,13 +14,24 @@ export default async function getTowns({
   const query = [
     `city="${city}"`
   ]
+  const fields = qs.stringify({
+    fields: [
+    'city',
+    'town',
+    'townReading',
+    'cityReading',
+  ]});
 
   const param = [
     `app=219`,
-    `query=${query} limit 500`
+    `query=${query} limit 500`,
+    fields
   ].join('&');
 
   const url = `${process.env.BASE_URL}/k/v1/records.json?${param}`;
+
+  console.log('Requesting', url);
+
   try {
     const {data} = await axios({
       method: 'GET',
