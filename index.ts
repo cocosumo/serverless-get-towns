@@ -1,16 +1,16 @@
-import { Context, APIGatewayProxyResult, APIGatewayEvent } from 'aws-lambda';
+import { APIGatewayProxyResult } from 'aws-lambda';
 import getTowns from './src/getTowns';
 
 export const handler = async (event: {
     city: string
 }): Promise<APIGatewayProxyResult> => {
+    console.log(`Event: ${JSON.stringify(event, null, 2)}`);
 
     const {
         city
     } = event;
-    console.log(`Event: ${JSON.stringify(event, null, 2)}`);
 
-    if(city) {
+    if(!city) {
         return {
         statusCode: 400,
         body: JSON.stringify({
