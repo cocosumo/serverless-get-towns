@@ -1,14 +1,14 @@
-import { APIGatewayProxyResult } from 'aws-lambda';
+import { APIGatewayEvent, APIGatewayProxyResult } from 'aws-lambda';
 import getTowns from './src/getTowns';
 
-export const handler = async (event: {
-    city: string
-}): Promise<APIGatewayProxyResult> => {
+export const handler = async (
+    event: APIGatewayEvent,  
+): Promise<APIGatewayProxyResult> => {
     console.log(`Event: ${JSON.stringify(event, null, 2)}`);
 
     const {
         city
-    } = event;
+    } = event.queryStringParameters || {};
 
     if(!city) {
         return {
