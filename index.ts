@@ -13,14 +13,6 @@ export const handler = async (
 ): Promise<APIGatewayProxyResult> => {
     console.log(`Event: ${JSON.stringify(event, null, 2)}`);
 
-    // get origin
-    const origin = event.headers.origin || event.headers.Origin || '';
-
-    console.log(`Origin: ${origin}`);
-    
-    // check if origin is allowed
-    const accessAllowOrigin = allowedOrigins.includes(origin) ? origin : allowedOrigins[0];
-
     const {
         city
     } = event.queryStringParameters || {};
@@ -43,7 +35,7 @@ export const handler = async (
         }),
         headers: {
             "Access-Control-Allow-Headers" : "Content-Type",
-            "Access-Control-Allow-Origin": accessAllowOrigin,
+            "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
         },
     };
