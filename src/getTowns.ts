@@ -10,7 +10,7 @@ export default async function getTowns({
   }
 
 
-  console.log('city', city);
+  console.log('city', city ,process.env.BASE_URL, process.env.API_TOKEN);
  /*  return await kintoneClient.record.getAllRecords({
     app: 219,
     condition: `city = "${city}"`,
