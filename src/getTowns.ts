@@ -15,15 +15,16 @@ export default async function getTowns({
     `city="${city}"`
   ]
   const fields = [
-    'city',
+    //'city',
+    //'cityReading',
     'town',
     'townReading',
-    'cityReading',
+    'postalCode',
   ].map((field, idx) => `fields[${idx}]=${field}`).join('&');
 
   const param = [
     `app=219`,
-    `query=${query} limit 500`,
+    `query=${query} order by townReading asc limit 500`,
     fields
   ].join('&');
 
@@ -39,7 +40,13 @@ export default async function getTowns({
         'X-Cybozu-API-Token': process.env.API_TOKEN || "",
       }
     })
-    return data.records;
+    return data.records.map((record: any) => {
+      return {
+        postal: record.postalCode.value,
+        town: record.town.value,
+        town_kana: record.townReading.value,
+      }
+    });
   } catch (error) {
     console.error('Error getting towns', error);
     return []

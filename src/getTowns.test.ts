@@ -8,6 +8,7 @@ describe('getTowns', () => {
       city: '豊田市'
     });
     console.log(result.length);
-   // expect(result.length).toBeGreaterThan(400);
+    console.log(result);
+    expect(result.length).toBeGreaterThan(400);
   }, 100000);
 });
