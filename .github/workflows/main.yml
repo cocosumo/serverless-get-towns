@@ -29,6 +29,5 @@ jobs:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_region: ap-northeast-1
-          function_name: getTowns
-          role: arn:aws:iam::047186674311:oidc-provider/token.actions.githubusercontent.com
+          function_name: get-towns
           zip_file: dist.zip
