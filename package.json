@@ -4,11 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prebuild": "del /q dist",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "esbuild index.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js",
-    "postbuild": "cd dist && 7z a -tzip index.zip index.js*"
-
   },
   "author": "",
   "license": "ISC",
