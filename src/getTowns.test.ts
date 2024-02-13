@@ -5,6 +5,6 @@ import getTowns from './getTowns';
 describe('getTowns', () => {
   test('should get all towns from toyota city"', async () => {
     const result = await getTowns();
-    
-  });
+    console.log(result);
+  }, 100000);
 });
