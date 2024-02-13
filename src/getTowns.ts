@@ -14,13 +14,12 @@ export default async function getTowns({
   const query = [
     `city="${city}"`
   ]
-  const fields = qs.stringify({
-    fields: [
+  const fields = [
     'city',
     'town',
     'townReading',
     'cityReading',
-  ]});
+  ].map((field, idx) => `fields[${idx}]=${field}`).join('&');
 
   const param = [
     `app=219`,
