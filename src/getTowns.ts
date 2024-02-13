@@ -8,7 +8,7 @@ export default async function getTowns({
 }): Promise<Object[]> {
 
   if(city === undefined) {
-   throw new Error('city is required');
+   throw new Error('getTowns: city is required');
   }
 
   const query = [

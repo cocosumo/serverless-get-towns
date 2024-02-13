@@ -19,7 +19,7 @@ export const handler = async (
         }
     };
 
-    const result = await getTowns({city: event.city});
+    const result = await getTowns({city});
 
     return {
         statusCode: 200,
