@@ -1,4 +1,4 @@
-// import kintoneClient from "./config";
+import kintoneClient from "./config";
 
 export default async function getTowns({
   city
@@ -11,10 +11,9 @@ export default async function getTowns({
 
 
   console.log('city', city ,process.env.BASE_URL, process.env.API_TOKEN);
- /*  return await kintoneClient.record.getAllRecords({
+  return await kintoneClient.record.getAllRecords({
     app: 219,
     condition: `city = "${city}"`,
     withCursor: false,
-  
-  }) */
+  });
 }
