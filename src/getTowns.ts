@@ -1,4 +1,4 @@
-import kintoneClient from "./config";
+// import kintoneClient from "./config";
 
 export default async function getTowns({
   city
@@ -9,10 +9,10 @@ export default async function getTowns({
    throw new Error('city is required');
   }
 
-  return await kintoneClient.record.getAllRecords({
+ /*  return await kintoneClient.record.getAllRecords({
     app: 219,
     condition: `city = "${city}"`,
     withCursor: false,
   
-  })
+  }) */
 }
