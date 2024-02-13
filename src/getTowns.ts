@@ -1,11 +1,17 @@
-import kintoneClient from "../config";
+import kintoneClient from "./config";
 
-export default async function getTowns() {
-  console.log('getTowns called');
+export default async function getTowns({
+  city
+}:{
+  city: string
+}) {
+  if(city === undefined) {
+   throw new Error('city is required');
+  }
 
   return await kintoneClient.record.getAllRecords({
     app: 219,
-    condition: 'city = "豊田市"',
+    condition: `city = "${city}"`,
     withCursor: false,
   
   })
